@@ -1,0 +1,7 @@
+#Tue Dec 20 12:20:44 CET 2011
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.toolchain.gnu.base.1525419024/PATH/delimiter=\:
+environment/project/cdt.managedbuild.toolchain.gnu.base.1525419024/PATH/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.base.1525419024/PATH/value=${CWD}
+environment/project/cdt.managedbuild.toolchain.gnu.base.1525419024/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.base.1525419024/appendContributed=true
