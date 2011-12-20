@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -f Makefile ];then
-  cmake ../
+  cmake ../ $USER_CMAKE_EXTRA_OPTIONS
 fi
 
 make $*
