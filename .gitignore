@@ -1,0 +1,7 @@
+lib
+bin
+include
+ANALYSIS/CMakeLists.txt
+cmake/cmake_AliRoot/
+!build/make.sh
+build/*
