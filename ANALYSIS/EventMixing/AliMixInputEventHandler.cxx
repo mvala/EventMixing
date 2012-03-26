@@ -17,6 +17,9 @@
 #include "AliAnalysisManager.h"
 #include "AliInputEventHandler.h"
 
+#include "AliESDInputHandler.h"
+#include "AliAODInputHandler.h"
+
 #include "AliMixEventPool.h"
 #include "AliMixInputEventHandler.h"
 #include "AliMixInputHandlerInfo.h"
@@ -542,15 +545,30 @@ void AliMixInputEventHandler::SetMixNumber(const Int_t mixNum)
    fMixNumber = mixNum;
 }
 
+//_____________________________________________________________________________
 Bool_t AliMixInputEventHandler::IsEventCurrentSelected()
 {
+   //
+   // Check if event is selected by Physics selection
+   //
+   
    AliDebug(AliLog::kDebug + 5, Form("<-"));
-   AliAnalysisManager *mgr = AliAnalysisManager::GetAnalysisManager();
-   AliMultiInputEventHandler *mh = dynamic_cast<AliMultiInputEventHandler *>(mgr->GetInputEventHandler());
    Bool_t isSelected = kTRUE;
-   if (mh) {
-      if (fOfflineTriggerMask && mh->GetEventSelection()) {
-         isSelected = fOfflineTriggerMask & mh->IsEventSelected();
+   if (fOfflineTriggerMask && fOfflineTriggerMask != AliVEvent::kAny) {
+      AliAnalysisManager *mgr = AliAnalysisManager::GetAnalysisManager();
+      AliMultiInputEventHandler *mh = dynamic_cast<AliMultiInputEventHandler *>(mgr->GetInputEventHandler());
+      if (mh) {
+         AliInputEventHandler *ih =  mh->GetFirstInputEventHandler();
+         AliVEvent *ev = ih->GetEvent();
+         ULong64_t triggerMask = ev->GetTriggerMask();
+         if (triggerMask) {
+            isSelected = fOfflineTriggerMask & triggerMask;
+         } else if (mh->GetEventSelection()) {
+            isSelected = fOfflineTriggerMask & mh->IsEventSelected();
+         } else {
+            // not selected because it is not AliVEvent::kAny
+            isSelected = kFALSE;
+         }
       }
    }
    AliDebug(AliLog::kDebug + 1, Form("isSelected=%d", isSelected));
