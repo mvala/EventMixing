@@ -17,9 +17,6 @@
 #include "AliAnalysisManager.h"
 #include "AliInputEventHandler.h"
 
-#include "AliESDInputHandler.h"
-#include "AliAODInputHandler.h"
-
 #include "AliMixEventPool.h"
 #include "AliMixInputEventHandler.h"
 #include "AliMixInputHandlerInfo.h"
