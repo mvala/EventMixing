@@ -332,8 +332,12 @@ void AliMixEventCutObj::PrintValues(AliVEvent *main, AliVEvent *mix)
    AliInfo(Form("name=%s main=%f mix=%f", GetCutName(), GetValue(main), GetValue(mix)));
 }
 
+//_________________________________________________________________________________________________
 Bool_t AliMixEventCutObj::IsValid()
 {
+   //
+   // Check if cut is valid
+   //
    switch (fCutType) {
 
       case kCentrality:
