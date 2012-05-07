@@ -117,7 +117,7 @@ void AliMixEventCutObj::PrintCurrentInterval()
    //
    // Prints current cut interval information
    //
-   AliDebug(AliLog::kDebug, Form("%s <%f,%f>", GetCutName(fCutType), GetMin(), GetMax()));
+   AliDebug(AliLog::kDebug, Form("%s <%f,%f>", GetCutName(fCutType), GetCurrentMin(), GetCurrentMax()));
 }
 
 //_________________________________________________________________________________________________
